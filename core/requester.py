@@ -2,6 +2,8 @@ import random
 import time
 
 import requests
+
+from core import renderer
 from requests.exceptions import TooManyRedirects
 
 
@@ -34,6 +36,12 @@ def requester(
 
     def make_request(url):
         """Default request"""
+        if renderer.enabled and renderer.should_render(url):
+            html = renderer.render(url, timeout, random.choice(user_agents))
+            if html:
+                return html
+            failed.add(url)
+            return 'dummy'
         final_headers = headers or {
             'Host': host,
             # Selecting a random user-agent

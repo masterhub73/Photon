@@ -16,10 +16,10 @@ from core.colors import good, info, run, green, red, white, end, bad
 
 # Just a fancy ass banner
 print('''%s      ____  __          __
-     / %s__%s \/ /_  ____  / /_____  ____
-    / %s/_/%s / __ \/ %s__%s \/ __/ %s__%s \/ __ \\
+     / %s__%s \\/ /_  ____  / /_____  ____
+    / %s/_/%s / __ \\/ %s__%s \\/ __/ %s__%s \\/ __ \\
    / ____/ / / / %s/_/%s / /_/ %s/_/%s / / / /
-  /_/   /_/ /_/\____/\__/\____/_/ /_/ %sv1.3.2%s\n''' %
+  /_/   /_/ /_/\\____/\\__/\\____/_/ /_/ %sv1.3.2%s\n''' %
       (red, white, red, white, red, white, red, white, red, white, red, white,
        red, white, end))
 
@@ -31,6 +31,7 @@ except ImportError:
 
 import core.config
 from core.config import INTELS
+from core import renderer
 from core.flash import flash
 from core.mirror import mirror
 from core.prompt import prompt
@@ -96,7 +97,10 @@ parser.add_argument('--only-urls', help='only extract URLs', dest='only_urls',
                     action='store_true')
 parser.add_argument('--wayback', help='fetch URLs from archive.org as seeds',
                     dest='archive', action='store_true')
+parser.add_argument('--render', help='render pages with headless Chromium', dest='render', action='store_true')
+parser.add_argument('--render-wait', help='virtual ms to wait for JS (default 8000)', dest='render_wait', type=int, default=8000)
 args = parser.parse_args()
+renderer.configure(args.render, args.render_wait)
 
 
 # If the user has supplied --update argument
