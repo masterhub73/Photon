@@ -98,7 +98,7 @@ parser.add_argument('--only-urls', help='only extract URLs', dest='only_urls',
 parser.add_argument('--wayback', help='fetch URLs from archive.org as seeds',
                     dest='archive', action='store_true')
 parser.add_argument('--render', help='render pages with headless Chromium', dest='render', action='store_true')
-parser.add_argument('--render-wait', help='virtual ms to wait for JS (default 8000)', dest='render_wait', type=int, default=8000)
+parser.add_argument('--render-wait', help='ms to wait for JS (default 20000)', dest='render_wait', type=int, default=20000)
 args = parser.parse_args()
 renderer.configure(args.render, args.render_wait)
 

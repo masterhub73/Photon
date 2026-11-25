@@ -1,2 +1,8 @@
-
-*.pyc
+chunks/
+con_*/
+sin_render/
+muse.ai/
+dom*.html
+dom_*.html
+frame*.txt
+net*.json
